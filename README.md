@@ -1,2 +1,2 @@
-# NPG-zlote-python
-Projekt npg zlote mysli na kazdy dzien
+# NPG-zlote-mysli
+Projekt na przedmiot narzędzia pracy grupowej temat: zlota mysl na kazdy dzien
