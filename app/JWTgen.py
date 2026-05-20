@@ -7,7 +7,7 @@ SECRET_KEY = "twoj_bardzo_tajny_i_dlugi_klucz_do_podpisywania_tokenow"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-
+#generator
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 
     to_encode = data.copy()
