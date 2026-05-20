@@ -28,7 +28,6 @@ class User(SQLModel, table=True):
     email: str = Field(unique=True, index=True, nullable=False)
     hashed_password: str = Field(nullable=False)
     zodiac_sign: ZodiacSign = Field(nullable=False)
-    # NOWOŚĆ: Przechowuje tylko datę (RRRR-MM-DD), domyślnie None (brak wypełnienia)
     last_survey_date: Optional[date] = Field(default=None) 
 
 
@@ -39,12 +38,8 @@ class Quote(SQLModel, table=True):
     tag: QuoteTag = Field(nullable=False)
 
 
-# --- NOWOŚĆ: TABELA HISTORII CYTATÓW ---
 class QuoteHistory(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    # foreign_key łączy tę kolumnę bezpośrednio z ID użytkownika
     user_id: int = Field(foreign_key="user.id", nullable=False)
-    # foreign_key łączy tę kolumnę z konkretnym cytatem
     quote_id: int = Field(foreign_key="quote.id", nullable=False)
-    # default_factory=datetime.now automatycznie wstawi dokładny czas zapisu wiersza
     received_at: datetime = Field(default_factory=datetime.now, nullable=False)
