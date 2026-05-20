@@ -1,15 +1,22 @@
-from datetime import date, timedelta
-from sqlmodel import select, Session
+def pobierz_cytat_po_tagu_bez_powtorek14(sesja: Session, user_id: int, tag: QuoteTag) -> Optional[Quote]:
 
+    dwa_tygodnie_temu = datetime.now() - timedelta(days=14)
 
-def get_blacklisted_quotes(user_id: int, db: Session) -> list[int]:
-    fourteen_days_ago = date.today() - timedelta(days=14)
-
-    statement = select(QuoteHistory.quote_id).where(
+    history_stmt = select(QuoteHistory.quote_id).where(
         QuoteHistory.user_id == user_id,
-        QuoteHistory.created_date >= fourteen_days_ago
+        QuoteHistory.received_at >= dwa_tygodnie_temu
     )
 
-    results = db.exec(statement).all()
+    recent_quote_ids = sesja.exec(history_stmt).all()
 
-    return results
+    stmt = select(Quote).where(Quote.tag == tag)
+
+    if recent_quote_ids:
+        stmt = stmt.where(Quote.id.notin_(recent_quote_ids))
+
+    available_quotes = sesja.exec(stmt).all()
+
+    if not available_quotes:
+        return None
+
+    return random.choice(available_quotes)
