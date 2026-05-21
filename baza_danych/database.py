@@ -1,8 +1,11 @@
 from sqlmodel import Session, SQLModel, create_engine
 from models import User, Quote, QuoteHistory
+from pathlib import Path
 
-sqlite_file_name = "database.db"
+BASE_DIR = Path(__file__).resolve().parent.parent
+sqlite_file_name = BASE_DIR / "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
+
 engine = create_engine(
     sqlite_url,
     connect_args={"check_same_thread": False},

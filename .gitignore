@@ -6,3 +6,5 @@ __pycache__/
 *.pyd
 test.py
 data_seeder.py
+database.db
+main.py
