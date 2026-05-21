@@ -18,3 +18,37 @@ W folderze znajdują się także pliki "seederów" wypełnijących tabele przyk�
 "users_seeder.py" dodaje 12 przykładowych kont użytkowników. Konta pokrywają wszystkie dostępne znaki zodiaku.
 "quotes_seeder.py" dodaje 8 startowych cytatów, przypisując każdemu odpowiedniego autora oraz tag (np. pocieszajacy, motywacyjny).
 "quotes_history_seeder.py" automatycznie generuje losową historię przypisywania cytatów do istniejących użytkowników (z ostatnich 30 dni). Skrypt jest kluczowy do prawidłowego przetestowania funkcji blokującej powtarzanie cytatów przez 7 dni.
+
+NAJNOWSZA AKTUALIZACJA!!
+W pliku database.py zostala dodana linijka odpowiadająca za inicjalizacje bazy danych poziom wyzej niz lokalizacja plikow inicjalizacyjnych. W zwiazku z tym mozna zpullowac sobie caly folder bazy danych i inicjalizować baze poza nim, wedlug schematu:
+----baza_danych
+|
+|
+----main.py (przykladowy plik importujący funkcje z database.py i seederow)
+|
+|
+----database.db (tu stworzy sie plik database)
+
+przykładowe zastosowanie funkcji z baza_danych w pliku main.py:
+import sys
+from pathlib import Path
+
+#Kluczowa linijka! Sprawia, że Python widzi pliki z folderu baza_danych, można je swobodnie importować i testować bez wyskakiwania błędów ze ścieżkami.
+sys.path.append(str(Path(__file__).resolve().parent / "baza_danych"))
+
+#Importowanie konkretnych funkcji z danych plikow
+from database import stworz_tabele
+from users_seeder import seed_users
+from quotes_seeder import seed_quotes
+from quotes_history_seeder import seed_quote_history
+
+def main():
+    print("Inicjalizacja bazy danych i seederów...")
+    stworz_tabele()
+    seed_users()
+    seed_quotes()
+    seed_quote_history()
+    print("Gotowe!")
+
+if __name__ == "__main__":
+    main()
