@@ -56,4 +56,6 @@ Emil – upewnij się, że w głównym pliku FastAPI dodałeś CORSMiddleware i 
 
 Jak postawicie te dwa endpointy i odpalicie u siebie serwer, to cały proces autoryzacji powinien nam już śmigać od deski do deski!"
 
+PRZYKŁADOWY FORMAT JSON'A Z ODPOWIEDZIAMI W ANKIECIE: {"humor": "wesola", "stress": "niski", "motivation": "wysoka"}
+
 
