@@ -1,17 +1,11 @@
 
 from fastapi import FastAPI, Depends, HTTPException
-from pydantic import BaseModel
-from sqlalchemy.orm import Session
 from sqlalchemy.sql.functions import user
-from sqlalchemy.testing.pickleable import User
-from sqlmodel import SQLModel, select
 from passlib.context import CryptContext
-from models import UserLogin, UserRegister
-from datetime import datetime, timedelta
-from jose import JWTError, jwt
-from typing import Optional
+from baza_danych.models import UserLogin, UserRegister
 from JWTgen import create_access_token
 from database import pobierz_sesje
+from crud import *
 
 
 
@@ -27,21 +21,16 @@ app = FastAPI()
 sesja = pobierz_sesje()
 @app.post("/reg")
 def register(data: UserRegister, baza: Session = Depends(pobierz_sesje)):
-    if 
-        return True
-
-
-#endpoint rejestracji zad 3.2
-@app.post("/reg")
-def register(data: UserRegister):
-
-
-    if existing_user:
+    uzytkownik_juz_jest  = pobierz_uzytkownika_po_mailu(baza, data.email)
+    if uzytkownik_juz_jest():
         raise HTTPException(status_code=400, detail="Email already registered")
+
     haszowane = hash_password(data.password)
-    dodaj_uzytkownika(sesja, data.email, haszowane)
+    dodaj_uzytkownika(baza, data.email, haszowane)
+    return {"message": "Registered successfully", "user_id": data.id}
 
 #endpoint logowania zad 3.3
+
 #przydiela acces token
 @app.post("/log")
 def login(data: UserLogin, baza: Session = Depends(get_db)):
