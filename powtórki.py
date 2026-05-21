@@ -19,4 +19,4 @@ def pobierz_cytat_po_tagu_bez_powtorek14(sesja: Session, user_id: int, tag: Quot
     if not available_quotes:
         return None
 
-    return random.choice(available_quotes)
+    return git andom.choice(available_quotes)
