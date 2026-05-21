@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Survey from './pages/Survey'
 import Dashboard from './pages/Dashboard'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
@@ -12,8 +13,19 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
 	<Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/survey" element={<Survey />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* Zabezpieczona Ankieta */}
+        <Route path="/survey" element={
+          <ProtectedRoute>
+            <Survey />
+          </ProtectedRoute>
+        } />
+        
+        {/* Zabezpieczony Dashboard */}
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
   )

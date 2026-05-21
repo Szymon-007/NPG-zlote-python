@@ -58,4 +58,10 @@ Jak postawicie te dwa endpointy i odpalicie u siebie serwer, to cały proces aut
 
 PRZYKŁADOWY FORMAT JSON'A Z ODPOWIEDZIAMI W ANKIECIE: {"humor": "wesola", "stress": "niski", "motivation": "wysoka"}
 
+OBSŁUGA BLOKADY STRON:
+Jeśli nie ma ankiety z dzisiaj:
+JSON {"has_filled_today": false}
+Jeśli użytkownik wysłał już dzisiaj ankietę:
+JSON {"has_filled_today": true}
+
 

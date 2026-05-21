@@ -96,18 +96,18 @@ export default function Register() {
             className="w-full p-4 bg-[#FDE8D3] rounded-xl outline-none focus:ring-4 focus:ring-[#99CDD8]/50 text-[#657166] transition-all font-medium cursor-pointer"
           >
             <option value="" disabled>Wybierz znak zodiaku</option>
-            <option value="Baran">Baran</option>
-            <option value="Byk">Byk</option>
-            <option value="Bliźnięta">Bliźnięta</option>
-            <option value="Rak">Rak</option>
-            <option value="Lew">Lew</option>
-            <option value="Panna">Panna</option>
-            <option value="Waga">Waga</option>
-            <option value="Skorpion">Skorpion</option>
-            <option value="Strzelec">Strzelec</option>
-            <option value="Koziorożec">Koziorożec</option>
-            <option value="Wodnik">Wodnik</option>
-            <option value="Ryby">Ryby</option>
+            <option value="baran">Baran</option>
+            <option value="byk">Byk</option>
+            <option value="bliznieta">Bliźnięta</option>
+            <option value="rak">Rak</option>
+            <option value="lew">Lew</option>
+            <option value="panna">Panna</option>
+            <option value="waga">Waga</option>
+            <option value="skorpion">Skorpion</option>
+            <option value="strzelec">Strzelec</option>
+            <option value="koziorozec">Koziorożec</option>
+            <option value="wodnik">Wodnik</option>
+            <option value="ryby">Ryby</option>
           </select>
 
           {/* Wyświetlanie błędów pod formularzem */}
