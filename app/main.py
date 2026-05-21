@@ -33,7 +33,7 @@ def register(data: UserRegister, baza: Session = Depends(pobierz_sesje)):
 
 #przydiela acces token
 @app.post("/log")
-def login(data: UserLogin, baza: Session = Depends(get_db)):
+def login(data: UserLogin, baza: Session = Depends(pobierz_sesje())):
 
     if not user or not verify_password(data.password, user.hashed_password):
         raise HTTPException(status_code=400, detail="Incorrect email or password")
@@ -41,6 +41,5 @@ def login(data: UserLogin, baza: Session = Depends(get_db)):
     token = create_access_token(data = dane)
     return {"access_token": token, "token_type": "bearer"}
 
-    return {"message": "Logged in successfully", "user_id": user.id}
 
 
