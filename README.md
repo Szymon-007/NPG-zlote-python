@@ -1,12 +1,11 @@
 # Instrukcja Wdrożenia i Uruchomienia Projektu
 
-Niniejszy dokument opisuje kroki niezbędne do poprawnego uruchomienia aplikacji bezpośrednio po sklonowaniu repozytorium z GitHub.
-
+Kroki które należy wykonac po sklonowniu repo
 ---
 
 ## CZĘŚĆ 1: BACKEND (FastAPI)
 
-Wszystkie komendy w tej sekcji wykonuj **w głównym folderze projektu** (`C:\Users\escib\PyCharmProjects\zlote_mysli_npg`). Nie wchodź do folderu `app`.
+Wszystkie komendy w tej sekcji wykonuj **w głównym folderze projektu** (`\zlote_mysli_npg`). Nie wchodź do folderu `app`.
 
 ### 1. Przygotowanie środowiska i instalacja bibliotek
 Upewnij się, że instalujesz biblioteki wewnątrz środowiska wirtualnego, aby uniknąć błędu `ModuleNotFoundError: No module named 'sqlmodel'`.
