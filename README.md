@@ -22,7 +22,7 @@ Pobierzcie i zainstalujcie wersję rekomendowaną (LTS).
 Żeby sprawdzić czy działa, zrestartujcie terminal i wpiszcie 'node -v' oraz 'npm -v'.
 Jeśli któraś z komend nie działa to musicie jeszcze wpisać 'Set-ExecutionPolicy RemoteSigned -Scope CurrentUser' i potwierdzić
 
-oczywiście zróbcie git fetch i git checkout Nikodem, potrzebujecie całego mojego brancha
+oczywiście zróbcie git fetch, git pull i git checkout Nikodem, potrzebujecie całego mojego brancha
 wszystko trzeba robić w folderze frontend, więc wpiszcie 'cd frontend'
 
 następnie zainstalujcie potrzebne biblioteki, wystarczy w tym samym terminalu w frontend wpisać 'npm install' (wszystko zaintaluje automatycznie)
@@ -63,5 +63,13 @@ Jeśli nie ma ankiety z dzisiaj:
 JSON {"has_filled_today": false}
 Jeśli użytkownik wysłał już dzisiaj ankietę:
 JSON {"has_filled_today": true}
+
+FORMAT OTRZYMYWANYCH CYTATÓW (można jeszcze zmienić:
+JSON o treści:
+{
+  "text": "Treść wybranego cytatu...",
+  "author": "Imię i Nazwisko Autora",
+  "category": "Nazwa kategorii, np. motywacyjny"
+}
 
 
