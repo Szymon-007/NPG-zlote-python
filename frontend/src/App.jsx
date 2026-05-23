@@ -18,9 +18,8 @@ function App() {
           <ProtectedRoute>
             <Survey />
           </ProtectedRoute>
-        } />
-        
-        {/* Zabezpieczony Dashboard */}
+        } /> 
+      {/* Zabezpieczony Dashboard */}
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard />
