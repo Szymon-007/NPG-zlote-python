@@ -1,38 +1,150 @@
 from sqlmodel import Session, select
 from database import engine
 from models import Quote, QuoteTag
- 
- 
+
 QUOTES = [
-    Quote(text="Najlepszym sposobem na odwdzięczenie się za uroczy moment jest cieszenie się nim.", author="Richard Bach", tag=QuoteTag.pocieszajacy),
+    # --- KATEGORIA: POCIESZAJĄCY ---
     Quote(text="Szczęście to jedyna rzecz, która się mnoży, jeśli się ją dzieli.", author="Albert Schweitzer", tag=QuoteTag.pocieszajacy),
- 
+    Quote(text="Najpiękniejsze rzeczy na świecie nie mogą być widziane ani dotykane – trzeba je poczuć sercem.", author="Helen Keller", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nie płacz, że coś się skończyło, tylko uśmiechaj się, że ci się to przytrafiło.", author="Gabriel García Márquez", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nawet najdłuższa noc kiedyś się kończy i wschodzi słońce.", author="Victor Hugo", tag=QuoteTag.pocieszajacy),
+    Quote(text="Rany są miejscem, przez które światło wchodzi do ciebie.", author="Rumi", tag=QuoteTag.pocieszajacy),
+    Quote(text="Tylko w ciemności możesz zobaczyć gwiazdy.", author="Martin Luther King Jr.", tag=QuoteTag.pocieszajacy),
+    Quote(text="Ból jest nieunikniony, cierpienie jest opcjonalne.", author="Haruki Murakami", tag=QuoteTag.pocieszajacy),
+    Quote(text="Czasami łzy są słowami, których serce nie potrafi wypowiedzieć.", author="Washington Irving", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nadzieja to jedyna pszczoła, która robi miód bez kwiatów.", author="Robert G. Ingersoll", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nie bój się cieni. One oznaczają tylko tyle, że gdzieś blisko świeci światło.", author="Ruth Renkel", tag=QuoteTag.pocieszajacy),
+    Quote(text="Odwaga nie zawsze ryczy. Czasami odwaga to cichy głos pod koniec dnia, który mówi: 'Spróbuję jutro jeszcze raz'.", author="Mary Anne Radmacher", tag=QuoteTag.pocieszajacy),
+    Quote(text="Z każdego smutku można utkać płaszcz mądrości.", author="Przysłowie wschodnie", tag=QuoteTag.pocieszajacy),
+    Quote(text="Jeśli przechodzisz przez piekło, nie zatrzymuj się.", author="Winston Churchill", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nie jesteś kroplą w oceanie. Jesteś całym oceanem w jednej kropli.", author="Rumi", tag=QuoteTag.pocieszajacy),
+    Quote(text="Kiedy jedne drzwi do szczęścia się zamykają, inne się otwierają.", author="Helen Keller", tag=QuoteTag.pocieszajacy),
+    Quote(text="Najciemniej jest zawsze tuż przed świtem.", author="Thomas Fuller", tag=QuoteTag.pocieszajacy),
+    Quote(text="Czas łagodzi każdy ból.", author="Menander", tag=QuoteTag.pocieszajacy),
+    Quote(text="Największa chwała w życiu nie polega na tym, by nigdy nie upaść, ale by zawsze się podnosić po upadku.", author="Nelson Mandela", tag=QuoteTag.pocieszajacy),
+    Quote(text="Najpiękniejsi ludzie to tacy, którzy poznali czym jest porażka, cierpienie i strata, a mimo to odnaleźli drogę do światła.", author="Elisabeth Kübler-Ross", tag=QuoteTag.pocieszajacy),
+    Quote(text="Przeżyłem wiele lat i miałem wiele problemów, z których większość nigdy się nie wydarzyła.", author="Mark Twain", tag=QuoteTag.pocieszajacy),
+    Quote(text="Pamiętaj, że dzisiaj jest to jutro, o które martwiłeś się wczoraj.", author="Dale Carnegie", tag=QuoteTag.pocieszajacy),
+    Quote(text="To, co gąsienica nazywa końcem świata, mistrz nazywa motylem.", author="Richard Bach", tag=QuoteTag.pocieszajacy),
+    Quote(text="Jeśli problem ma rozwiązanie, nie ma sensu się martwić. Jeśli nie ma rozwiązania, martwienie się nic nie pomoże.", author="Dalajlama", tag=QuoteTag.pocieszajacy),
+    Quote(text="Zamiast martwić się tym, co może pójść źle, pomyśl o tym, co może pójść dobrze.", author="Roy T. Bennett", tag=QuoteTag.pocieszajacy),
+    Quote(text="Wszystko będzie dobrze na końcu. Jeśli nie jest dobrze, to znaczy, że to jeszcze nie koniec.", author="John Lennon", tag=QuoteTag.pocieszajacy),
+    Quote(text="Wszystko jest trudne, zanim stanie się łatwe.", author="Thomas Fuller", tag=QuoteTag.pocieszajacy),
+    Quote(text="Twoim zadaniem nie jest przewidywanie przyszłości, lecz przygotowanie się na nią.", author="Perykles", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nie możemy kontrolować wiatru, ale możemy odpowiednio ustawić żagle.", author="Arystoteles", tag=QuoteTag.pocieszajacy),
+    Quote(text="Spokojne morze nigdy nie ukształtowało sprawnego żeglarza.", author="Franklin D. Roosevelt", tag=QuoteTag.pocieszajacy),
+    Quote(text="Życie składa się w dziesięciu procentach z tego, co nam się przydarza, i w dziewięćdziesięciu procentach z tego, jak na to reagujemy.", author="Charles R. Swindoll", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nie pozwól, by mała przeszkoda zepsuła ci wielką podróż.", author="Przysłowie francuskie", tag=QuoteTag.pocieszajacy),
+    Quote(text="Uśmiech to krzywa, która prostuje wszystko.", author="Phyllis Diller", tag=QuoteTag.pocieszajacy),
+    Quote(text="Ptak siedzący na drzewie nigdy nie boi się, że gałąź się złamie, bo jego ufność leży nie w gałęzi, ale w jego własnych skrzydłach.", author="Charlie Wardle", tag=QuoteTag.pocieszajacy),
+    Quote(text="W środku każdej trudności leży ukryta szansa.", author="Albert Einstein", tag=QuoteTag.pocieszajacy),
+    Quote(text="Trudności i przeciwności przygotowują zwykłych ludzi na niezwykły los.", author="C.S. Lewis", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nic nie trwa wiecznie na tym wspaniałym świecie, nawet nasze kłopoty.", author="Charlie Chaplin", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nie złość się, że róże mają kolce. Ciesz się, że krzewy kolczaste mają róże.", author="Alphonse Karr", tag=QuoteTag.pocieszajacy),
+    Quote(text="Nawet zepsuty zegar pokazuje dokładną godzinę dwa razy na dobę.", author="Marie von Ebner-Eschenbach", tag=QuoteTag.pocieszajacy),
+        
+    # --- KATEGORIA: MOTYWACYJNY ---
+    Quote(text="Kiedy wydaje ci się, że wszystko jest przeciwko tobie, pamiętaj, że samolot startuje pod wiatr, a nie z wiatrem.", author="Henry Ford", tag=QuoteTag.motywacyjny),
+    Quote(text="W środku każdej trudności leży ukryta szansa.", author="Albert Einstein", tag=QuoteTag.motywacyjny),
     Quote(text="Za dwadzieścia lat bardziej będziesz żałował tego, czego nie zrobiłeś, niż tego, co zrobiłeś.", author="Mark Twain", tag=QuoteTag.motywacyjny),
     Quote(text="Podróż tysiąca mil zaczyna się od jednego kroku.", author="Laozi", tag=QuoteTag.motywacyjny),
- 
-    Quote(text="Dobrze widzi się tylko sercem. Najważniejsze jest niewidoczne dla oczu.", author="Antoine de Saint-Exupéry", tag=QuoteTag.odstresowujacy),
-    Quote(text="Najpiękniejsze rzeczy na świecie nie mogą być widziane ani dotykane – trzeba je poczuć sercem.", author="Helen Keller", tag=QuoteTag.odstresowujacy),
-    
+    Quote(text="Nie czekaj. Pora nigdy nie będzie idealna.", author="Napoleon Hill", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie poniosłem porażki. Po prostu odkryłem 10 000 sposobów, które nie działają.", author="Thomas Edison", tag=QuoteTag.motywacyjny),
+    Quote(text="Twoje życie staje się lepsze tylko wtedy, gdy Ty stajesz się lepszy.", author="Brian Tracy", tag=QuoteTag.motywacyjny),
+    Quote(text="Zawsze wydaje się, że coś jest niemożliwe, dopóki nie zostanie to zrobione.", author="Nelson Mandela", tag=QuoteTag.motywacyjny),
+    Quote(text="Nigdy nie pozwól, by strach przed uderzeniem wykluczył cię z gry.", author="Babe Ruth", tag=QuoteTag.motywacyjny),
+    Quote(text="Jesteśmy tym, co wielokrotnie robimy. Doskonałość nie jest więc aktem, lecz nawykiem.", author="Arystoteles", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie sztuką jest nie popełniać błędów, sztuką jest wyciągać z nich wnioski.", author="Winston Churchill", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie módlcie się o łatwe życie. Módlcie się, żebyście byli silniejszymi ludźmi.", author="John F. Kennedy", tag=QuoteTag.motywacyjny),
+    Quote(text="Twój czas jest ograniczony, więc nie marnuj go na życie cudzym życiem.", author="Steve Jobs", tag=QuoteTag.motywacyjny),
+    Quote(text="Pudłujesz w 100% strzałów, których nie oddajesz.", author="Wayne Gretzky", tag=QuoteTag.motywacyjny),
+    Quote(text="Logika zaprowadzi cię z punktu A do punktu B. Wyobraźnia zaprowadzi cię wszędzie.", author="Albert Einstein", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie obawiaj się porzucić tego, co dobre, by sięgnąć po to, co wspaniałe.", author="John D. Rockefeller", tag=QuoteTag.motywacyjny),
+    Quote(text="Jeśli potrafisz o czymś marzyć, to potrafisz także tego dokonać.", author="Walt Disney", tag=QuoteTag.motywacyjny),
+    Quote(text="Zacznij tam, gdzie jesteś. Użyj tego, co masz. Zrób to, co możesz.", author="Arthur Ashe", tag=QuoteTag.motywacyjny),
+    Quote(text="Wszystko, czego kiedykolwiek pragnąłeś, leży po drugiej stronie strachu.", author="George Addair", tag=QuoteTag.motywacyjny),
+    Quote(text="Najlepszy czas na posadzenie drzewa był 20 lat temu. Drugi najlepszy czas jest teraz.", author="Przysłowie chińskie", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie licz dni, spraw, by dni się liczyły.", author="Muhammad Ali", tag=QuoteTag.motywacyjny),
+    Quote(text="Ludzie, którzy są wystarczająco szaleni, by myśleć, że mogą zmienić świat, są tymi, którzy to robią.", author="Steve Jobs", tag=QuoteTag.motywacyjny),
+    Quote(text="Droga do sukcesu jest zawsze w budowie.", author="Lily Tomlin", tag=QuoteTag.motywacyjny),
+    Quote(text="Jedynym miejscem, gdzie sukces występuje przed pracą, jest słownik.", author="Vidal Sassoon", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie zatrzymuj się, kiedy jesteś zmęczony. Zatrzymaj się, kiedy skończysz.", author="Marilyn Monroe", tag=QuoteTag.motywacyjny),
+    Quote(text="Cel to marzenie z datą realizacji.", author="Napoleon Hill", tag=QuoteTag.motywacyjny),
+    Quote(text="Statek jest bezpieczny w porcie, ale nie po to buduje się statki.", author="John A. Shedd", tag=QuoteTag.motywacyjny),
+    Quote(text="Sukces to przechodzenie od porażki do porażki bez utraty entuzjazmu.", author="Winston Churchill", tag=QuoteTag.motywacyjny),
+    Quote(text="Nigdy nie rezygnuj z celu tylko dlatego, że osiągnięcie go wymaga czasu. Czas i tak upłynie.", author="Earl Nightingale", tag=QuoteTag.motywacyjny),
+    Quote(text="To, co osiągasz, zdobywając swoje cele, nie jest tak ważne jak to, kim się stajesz w trakcie ich zdobywania.", author="Zig Ziglar", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie bój się wielkiego kroku. Nie pokonasz przepaści dwoma małymi.", author="David Lloyd George", tag=QuoteTag.motywacyjny),
+    Quote(text="Jeśli nie potrafisz latać, biegnij. Jeśli nie potrafisz biegać, idź. Jeśli nie potrafisz chodzić, czołgaj się. Ale bez względu na wszystko, posuwaj się naprzód.", author="Martin Luther King Jr.", tag=QuoteTag.motywacyjny),
+    Quote(text="Sukces zazwyczaj przychodzi do tych, którzy są zbyt zajęci, by go szukać.", author="Henry David Thoreau", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie patrz na zegar; rób to, co on. Idź naprzód.", author="Sam Levenson", tag=QuoteTag.motywacyjny),
+    Quote(text="Celuj w księżyc. Nawet jeśli spudłujesz, wylądujesz między gwiazdami.", author="Les Brown", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie musisz być wielki, aby zacząć, ale musisz zacząć, aby być wielkim.", author="Zig Ziglar", tag=QuoteTag.motywacyjny),
+    Quote(text="Nie śmierci powinien bać się człowiek, lecz tego, że nigdy nie zacznie żyć.", author="Marek Aureliusz", tag=QuoteTag.motywacyjny),
+    Quote(text="Ten, kto ma w życiu swoje 'dlaczego', zniesie prawie każde 'jak'.", author="Friedrich Nietzsche", tag=QuoteTag.motywacyjny),
+
+    # --- KATEGORIA: ODSTRESOWUJĄCY ---
+    Quote(text="Najlepszym sposobem na odwdzięczenie się za uroczy moment jest cieszenie się nim.", author="Richard Bach", tag=QuoteTag.odstresowujacy),
+    Quote(text="Ciesz się małymi rzeczami, bo pewnego dnia możesz spojrzeć wstecz i uświadomić sobie, że były to rzeczy wielkie.", author="Robert Brault", tag=QuoteTag.odstresowujacy),
+    Quote(text="Szczęście to nie stacja, do której przyjeżdżasz, lecz sposób podróżowania.", author="Margaret Lee Runbeck", tag=QuoteTag.odstresowujacy),
+    Quote(text="Prawdziwe szczęście jest rzeczą cichą i polega głównie na zadowoleniu z siebie.", author="Joseph Addison", tag=QuoteTag.odstresowujacy),
+    Quote(text="Prawdziwe szczęście polega na tym, by czerpać radość z tego, co mamy, tu i teraz.", author="Seneka", tag=QuoteTag.odstresowujacy),
+    Quote(text="Zawsze patrz na jasną stronę życia.", author="Monty Python", tag=QuoteTag.odstresowujacy),
+    Quote(text="Życie to najpiękniejsza z bajek, jeśli tylko w nią uwierzysz.", author="Hans Christian Andersen", tag=QuoteTag.odstresowujacy),
+    Quote(text="Trzymaj twarz zawsze w stronę słońca, a cienie będą padać za tobą.", author="Walt Whitman", tag=QuoteTag.odstresowujacy),
+    Quote(text="Być radosnym, dobrze czynić i wróblom pozwalać ćwierkać - to najlepsza filozofia.", author="Św. Jan Bosco", tag=QuoteTag.odstresowujacy),
+    Quote(text="Spokój jest kluczem do wszelkiej mądrości.", author="Przysłowie chińskie", tag=QuoteTag.odstresowujacy),
+    Quote(text="Prawdziwe bogactwo to spokój umysłu.", author="W. Clement Stone", tag=QuoteTag.odstresowujacy),
+    Quote(text="Nie martw się o jutro, ono samo o siebie zadba.", author="Ewangelia Mateusza", tag=QuoteTag.odstresowujacy),
+    Quote(text="Nigdzie się nie spiesz, a ze wszystkim zdążysz na czas.", author="Przysłowie ludowe", tag=QuoteTag.odstresowujacy),
+    Quote(text="Natura nie spieszy się, a jednak wszystko jest zrobione.", author="Laozi", tag=QuoteTag.odstresowujacy),
+    Quote(text="Czas spędzony na odzyskiwaniu równowagi nigdy nie jest czasem straconym.", author="John Lennon", tag=QuoteTag.odstresowujacy),
+    Quote(text="Stres pochodzi z ignorowania tego, na co i tak nie mamy wpływu.", author="Eckhart Tolle", tag=QuoteTag.odstresowujacy),
+    Quote(text="Opanowanie to potęga. Spokój to mistrzostwo.", author="Tymon z Aten", tag=QuoteTag.odstresowujacy),
+    Quote(text="Nie można zatrzymać fal, ale można nauczyć się surfować.", author="Jon Kabat-Zinn", tag=QuoteTag.odstresowujacy),
+    Quote(text="Przyjmij to, co jest, odpuść to, co było, i miej wiarę w to, co będzie.", author="Sonia Ricotti", tag=QuoteTag.odstresowujacy),
+    Quote(text="Woda, która płynie swobodnie, nigdy nie traci swojej czystości.", author="Przysłowie zen", tag=QuoteTag.odstresowujacy),
+    Quote(text="Każdy dzień to małe życie – zadbaj o to, by znalazł się w nim czas na spokój.", author="Arthur Schopenhauer", tag=QuoteTag.odstresowujacy),
+    Quote(text="Wszystko można odzyskać oprócz czasu.", author="Przysłowie łacińskie", tag=QuoteTag.odstresowujacy),
+    Quote(text="Uśmiechnij się, oddychaj i idź powoli.", author="Thich Nhat Hanh", tag=QuoteTag.odstresowujacy),
+    Quote(text="Czas, który lubisz marnować, nie jest czasem straconym.", author="Bertrand Russell", tag=QuoteTag.odstresowujacy),
+    Quote(text="Wszystkie zmartwienia ludzkie wynikają z niezdolności do siedzenia w ciszy w jednym pokoju.", author="Blaise Pascal", tag=QuoteTag.odstresowujacy),
+    Quote(text="Nie obciążaj się rzeczami, na które nie masz wpływu.", author="Epiktet", tag=QuoteTag.odstresowujacy),
+    Quote(text="Kto idzie powoli, idzie bezpiecznie i zachodzi daleko.", author="Przysłowie włoskie", tag=QuoteTag.odstresowujacy),
+    Quote(text="Spokój nie oznacza bycia w miejscu bez hałasu. Oznacza bycie pośród tych rzeczy i zachowanie ciszy w sercu.", author="Eckhart Tolle", tag=QuoteTag.odstresowujacy),
+    Quote(text="Czasami najmądrzejszą rzeczą, jaką możesz zrobić, jest po prostu nie robić nic.", author="A.A. Milne", tag=QuoteTag.odstresowujacy),
+    Quote(text="Nigdy nie bądź tak bardzo zajęty zarabianiem na życie, żebyś zapomniał o samym życiu.", author="Dolly Parton", tag=QuoteTag.odstresowujacy),
+    Quote(text="Nie ma drogi do pokoju; to pokój jest drogą.", author="Mahatma Gandhi", tag=QuoteTag.odstresowujacy),
+    Quote(text="Ciesz się każdą chwilą, bo każda z nich jest jedyna w swoim rodzaju.", author="Mark Twain", tag=QuoteTag.odstresowujacy),
+        
+    # --- KATEGORIA: OGÓLNY (FILOZOFICZNY) ---
+    Quote(text="Dobrze widzi się tylko sercem. Najważniejsze jest niewidoczne dla oczu.", author="Antoine de Saint-Exupéry", tag=QuoteTag.ogolny),
+    Quote(text="Gdzie jest miłość, tam jest życie.", author="Mahatma Gandhi", tag=QuoteTag.ogolny),
     Quote(text="Każdy nowy początek pochodzi z końca jakiegoś innego początku.", author="Seneka", tag=QuoteTag.ogolny),
-    Quote(text="Prawdziwa miłość zaczyna się tam, gdzie niczego już w zamian nie oczekuje.", author="Antoine de Saint-Exupéry", tag=QuoteTag.ogolny),
+    Quote(text="Miłość to nie tylko patrzenie na siebie nawzajem, ale patrzenie razem w tym samym kierunku.", author="Antoine de Saint-Exupéry", tag=QuoteTag.ogolny),
+    Quote(text="Dwa najważniejsze dni w twoim życiu to ten, w którym się urodziłeś, i ten, w którym dowiedziałeś się, po co.", author="Mark Twain", tag=QuoteTag.ogolny),
+    Quote(text="W dzisiejszych czasach ludzie znają cenę wszystkiego, ale nie znają wartości niczego.", author="Oscar Wilde", tag=QuoteTag.ogolny),
+    Quote(text="Człowiek, który goni dwa zające, nie złapie żadnego.", author="Konfucjusz", tag=QuoteTag.ogolny),
+    Quote(text="Wszyscy żyjemy pod tym samym niebem, ale nie wszyscy mamy ten sam horyzont.", author="Konrad Adenauer", tag=QuoteTag.ogolny),
+    Quote(text="Wątpliwość jest początkiem mądrości.", author="Kartezjusz", tag=QuoteTag.ogolny),
+    Quote(text="Sensu życia się nie znajduje – sens życia się tworzy.", author="Antoine de Saint-Exupéry", tag=QuoteTag.ogolny),
+    
 ]
- 
- 
+
 def seed_quotes():
     print("Dodaję cytaty...")
- 
+
     with Session(engine) as session:
         ma_cytaty = session.exec(select(Quote)).first()
- 
+
         if ma_cytaty:
             print("Cytaty już istnieją w bazie. Pomijam.")
             return
- 
+
         session.add_all(QUOTES)
         session.commit()
- 
+
     print(f"Dodano {len(QUOTES)} cytatów.")
- 
- 
+
 if __name__ == "__main__":
     seed_quotes()
