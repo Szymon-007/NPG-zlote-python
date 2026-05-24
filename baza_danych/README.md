@@ -5,6 +5,16 @@ Folder składa się z trzech plików inicjalizujących bazę danych, a w niej tr
 2. **Tabela cytatów** (`Quote`)
 3. **Historia cytatów** (`QuoteHistory`)
 
+## Architektura i Relacje (Klucze Obce)
+
+Baza danych opiera się na relacyjnym modelu, w którym głównym punktem łączącym (tzw. tabelą asocjacyjną) jest `QuoteHistory`. Tabele są połączone za pomocą następujących kluczy obcych (Foreign Keys):
+
+* **`QuoteHistory.user_id` -> `User.id`**
+  Tworzy relację jeden-do-wielu (1:N). Jeden użytkownik może mieć wiele wpisów w historii (otrzymać wiele cytatów), ale konkretny wpis w historii należy tylko do jednego użytkownika. Zapewnia to identyfikację, do kogo trafił dany cytat.
+  
+* **`QuoteHistory.quote_id` -> `Quote.id`**
+  Tworzy relację jeden-do-wielu (1:N). Jeden cytat może zostać wylosowany i przypisany do wielu różnych użytkowników w różnym czasie, ale dany wpis w historii zawsze odnosi się do jednego, konkretnego cytatu z bazy.
+
 Za inicjalizację odpowiadają dwa pliki:
 * `database.py` – wywołanie tego pliku powoduje stworzenie bazy danych lokalnie.
 * `models.py` – plik podrzędny opisujący struktury tabel; w linijkach 26-45 opisane są nazwy i kolumny poszczególnych tabel.
