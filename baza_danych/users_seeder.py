@@ -1,21 +1,21 @@
 from sqlmodel import Session, select
-from database import engine
-from models import User, ZodiacSign
+from baza_danych.database import engine
+from baza_danych.models import User, ZodiacSign
  
  
 USERS = [
-    {"email": "anna.kowalska@gmail.com",   "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.baran},
-    {"email": "piotr.nowak@gmail.com",     "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.byk},
-    {"email": "karolina.wis@gmail.com",    "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.bliznieta},
-    {"email": "marek.lis@gmail.com",       "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.rak},
-    {"email": "zofia.maj@gmail.com",       "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.lew},
-    {"email": "tomasz.wrobel@gmail.com",   "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.panna},
-    {"email": "ewa.kaminska@gmail.com",    "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.waga},
-    {"email": "lukasz.zak@gmail.com",      "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.skorpion},
-    {"email": "natalia.bak@gmail.com",     "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.strzelec},
-    {"email": "michal.krol@gmail.com",     "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.koziorozec},
-    {"email": "julia.szymanska@gmail.com", "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.wodnik},
-    {"email": "adam.pawlak@gmail.com",     "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.ryby},
+    {"email": "anna.kowalska@gmail.com",   "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Baran},
+    {"email": "piotr.nowak@gmail.com",     "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Byk},
+    {"email": "karolina.wis@gmail.com",    "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Bliznieta},
+    {"email": "marek.lis@gmail.com",       "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Rak},
+    {"email": "zofia.maj@gmail.com",       "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Lew},
+    {"email": "tomasz.wrobel@gmail.com",   "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Panna},
+    {"email": "ewa.kaminska@gmail.com",    "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Waga},
+    {"email": "lukasz.zak@gmail.com",      "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Skorpion},
+    {"email": "natalia.bak@gmail.com",     "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Strzelec},
+    {"email": "michal.krol@gmail.com",     "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Koziorozec},
+    {"email": "julia.szymanska@gmail.com", "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Wodnik},
+    {"email": "adam.pawlak@gmail.com",     "hashed_password": "haslo123", "zodiac_sign": ZodiacSign.Ryby},
 ]
  
  

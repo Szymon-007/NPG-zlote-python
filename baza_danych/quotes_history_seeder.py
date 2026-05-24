@@ -1,6 +1,6 @@
 from sqlmodel import Session, select
-from database import engine
-from models import User, Quote, QuoteHistory
+from baza_danych.database import engine
+from baza_danych.models import User, Quote, QuoteHistory
 from datetime import datetime, timedelta
 import random
 

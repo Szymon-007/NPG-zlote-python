@@ -1,5 +1,5 @@
 from sqlmodel import Session, SQLModel, create_engine
-from models import User, Quote, QuoteHistory
+from baza_danych.models import User, Quote, QuoteHistory
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent

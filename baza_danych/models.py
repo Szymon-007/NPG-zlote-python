@@ -4,18 +4,18 @@ from datetime import datetime, date
 from enum import Enum
 
 class ZodiacSign(str, Enum):
-    baran = "baran"
-    byk = "byk"
-    bliznieta = "bliznieta"
-    rak = "rak"
-    lew = "lew"
-    panna = "panna"
-    waga = "waga"
-    skorpion = "skorpion"
-    strzelec = "strzelec"
-    koziorozec = "koziorozec"
-    wodnik = "wodnik"
-    ryby = "ryby"
+    Baran = "Baran"
+    Byk = "Byk"
+    Bliznieta = "Bliznieta"
+    Rak = "Rak"
+    Lew = "Lew"
+    Panna = "Panna"
+    Waga = "Waga"
+    Skorpion = "Skorpion"
+    Strzelec = "Strzelec"
+    Koziorozec = "Koziorozec"
+    Wodnik = "Wodnik"
+    Ryby = "Ryby"
 
 class QuoteTag(str, Enum):
     pocieszajacy = "pocieszajacy"

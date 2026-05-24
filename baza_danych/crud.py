@@ -2,7 +2,7 @@ from sqlmodel import Session, select
 import random
 from datetime import datetime, timedelta, time
 from typing import Optional
-from models import User, ZodiacSign, Quote, QuoteHistory, QuoteTag
+from baza_danych.models import User, ZodiacSign, Quote, QuoteHistory, QuoteTag
 
 
 def zapisz_cytat_do_historii(sesja: Session, user_id: int, quote_id: int):

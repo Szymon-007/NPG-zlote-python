@@ -1,6 +1,6 @@
 from sqlmodel import Session, select
-from database import engine
-from models import Quote, QuoteTag
+from baza_danych.database import engine
+from baza_danych.models import Quote, QuoteTag
 
 QUOTES = [
     Quote(text="Szczęście to jedyna rzecz, która się mnoży, jeśli się ją dzieli.", author="Albert Schweitzer", tag=QuoteTag.pocieszajacy),
