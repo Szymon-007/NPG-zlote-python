@@ -1,26 +1,23 @@
-from apscheduler.schedulers.background import BackgroundScheduler
-from base_engine import session
-from base import User
+def calculate_ideal_tag(stress: str, motivation: str, humor: str) -> str:
+    """
+    Wylicza idealny tag na podstawie czystych stringów przesyłanych z frontendu.
+    Wartości z Survey.jsx:
+    - stress: 'niski', 'sredni', 'wysoki'
+    - motivation: 'niska', 'srednia', 'wysoka'
+    - humor: 'smutna', 'neutralna', 'wesola'
+    """
+    # Jeśli stres jest wysoki -> dajemy cytat odstresowujący
+    if stress == "wysoki":
+        return "odstresowujacy"
 
-budzik = BackgroundScheduler()
-def send(email):
+    # Jeśli motywacja jest niska -> dajemy cytat motywacyjny
+    elif motivation == "niska":
+        return "motywacyjny"
 
+    # Jeśli humor jest słaby (smutna) -> dajemy cytat pocieszający
+    elif humor == "smutna":
+        return "pocieszajacy"
 
-# do implementacji...
-
-
-def summary():
-    baza =session()
-    try:
-        maile = baza.query(User).all()
-        for i in maile:
-            send(User.email)
-    finally:
-        baza.close()
-
-
-
-
-
-budzik.add_job(summary, 'cron', hour=0, minute=0)
-
+    # W każdym innym przypadku zwracamy domyślny tag
+    else:
+        return "ogolny"
