@@ -1,6 +1,6 @@
 from sqlmodel import Session, select
 import random
-from datetime import datetime, timedelta, time
+from datetime import datetime, timedelta, time, date
 from typing import Optional
 from baza_danych.models import User, ZodiacSign, Quote, QuoteHistory, QuoteTag
 
@@ -69,8 +69,28 @@ def pobierz_wczorajszy_cytat(sesja: Session, user_id: int) -> Optional[Quote]:
         select(Quote)
         .join(QuoteHistory)
         .where(QuoteHistory.user_id == user_id)
-        .where(QuoteHistory.received_at >= start_of_yesterday)
-        .where(QuoteHistory.received_at < start_of_today)
+        #.where(QuoteHistory.received_at >= start_of_yesterday)
+        #.where(QuoteHistory.received_at < start_of_today)
     )
 
     return sesja.exec(statement).first()
+
+def pobierz_uzytkownika_po_id(sesja: Session, user_id: int) -> Optional[User]:
+    zapytanie = select(User).where(User.id == user_id)
+    return sesja.exec(zapytanie).first()
+
+def aktualizuj_date_ankiety_uzytkownika(sesja: Session, user_id: int) -> User:
+    """
+    Pobiera użytkownika z bazy i ustawia jego kolumnę last_survey_date
+    na dzisiejszą datę systemową.
+    """
+    uzytkownik = sesja.get(User, user_id)
+
+    if uzytkownik:
+        uzytkownik.last_survey_date = date.today()
+
+        sesja.add(uzytkownik)
+        sesja.commit()
+        sesja.refresh(uzytkownik)
+
+    return uzytkownik
