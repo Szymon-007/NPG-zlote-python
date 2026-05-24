@@ -11,20 +11,23 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parent / "baza_danych"))
 
-from models import User
-from database import engine
-from crud import pobierz_wczorajszy_cytat
-from database import stworz_tabele 
-from users_seeder import seed_users 
-from quotes_seeder import seed_quotes 
-from quotes_history_seeder import seed_quote_history
+from baza_danych.models import User
+from baza_danych.database import engine
+from baza_danych.crud import pobierz_wczorajszy_cytat
+from baza_danych.database import stworz_tabele
+from baza_danych.users_seeder import seed_users
+from baza_danych.quotes_seeder import seed_quotes
+from baza_danych.quotes_history_seeder import seed_quote_history
 
 sciezka_do_bazy = 'database.db'
+from datetime import date, timedelta
+
+# Odejmujemy 1 dzień od realnej daty
 
 def bazki():
     if not os.path.exists(sciezka_do_bazy):
         stworz_tabele()
-        seed_users()
+        ##seed_users()
         seed_quotes()
         seed_quote_history()
     else:
@@ -79,7 +82,7 @@ def proces_masowej_wysylki():
         print("Baza jest pusta. Przerywam operację.")
         return
 
-    bazowy_link = "https://upel.agh.edu.pl"
+    bazowy_link = "http://localhost:5173/login"
 
     wyslano = 0
 
@@ -108,7 +111,7 @@ def proces_masowej_wysylki():
                     link=link,
                 )
                 wyslano += 1
-                if wyslano >=4:
+                if wyslano >=40:
                     break
 
         print(f"Zakończono wysyłkę: {wyslano} e-maili wysłanych.")
