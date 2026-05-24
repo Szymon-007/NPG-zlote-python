@@ -3,35 +3,28 @@ import { Link, useNavigate } from 'react-router-dom';
 import { apiFetch, setToken } from '../utils/api';
 
 export default function Login() {
-  // 1. Zmienne stanu do przechowywania wpisywanych danych
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   
-  // Narzędzie do zmieniania stron
   const navigate = useNavigate();
 
-  // 2. Funkcja, która uruchomi się po kliknięciu "Wejdź"
   const handleLogin = async (e) => {
-    e.preventDefault(); // Blokuje domyślne, irytujące odświeżanie strony przez przeglądarkę
-    setErrorMessage(''); // Czyścimy ewentualne stare błędy
+    e.preventDefault();
+    setErrorMessage(''); 
 
     try {
-      // 3. Nasz skrypt uderzający do API chłopaków z backendu
       const response = await apiFetch('/api/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password }) // Wysyłamy to, co user wpisał w okienka
+        body: JSON.stringify({ email, password })
       });
 
       if (response.ok) {
-        // Jeśli backend potwierdzi dane, wyciągamy token
         const data = await response.json();
-        setToken(data.access_token); // Zapisujemy bilet w pamięci przeglądarki!
+        setToken(data.access_token);
         
-        // Magia: przerzucamy użytkownika np. do ankiety (lub Dashboardu, zależnie od logiki)
         navigate('/survey'); 
       } else {
-        // Jeśli hasło/email są złe, wyświetlamy błąd
         setErrorMessage('Nieprawidłowy e-mail lub hasło.');
       }
     } catch (error) {
@@ -44,14 +37,14 @@ export default function Login() {
       <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md text-[#657166]">
         <h1 className="text-3xl font-bold text-center mb-8 !text-[#FDE8D3]">Zaloguj się</h1>
 
-        {/* Dodajemy funkcję handleLogin do formularza */}
+     
         <form onSubmit={handleLogin} className="flex flex-col gap-5">
           
           <input
             type="email"
             placeholder="Adres e-mail"
-            value={email} // Podpinamy zmienną
-            onChange={(e) => setEmail(e.target.value)} // Aktualizujemy zmienną przy każdym wciśnięciu klawisza
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
             required
             className="w-full p-4 bg-[#FDE8D3] rounded-xl outline-none focus:ring-4 focus:ring-[#99CDD8]/50 text-[#657166] placeholder-[#657166]/60 transition-all font-medium"
           />
@@ -59,13 +52,13 @@ export default function Login() {
           <input
             type="password"
             placeholder="Hasło"
-            value={password} // Podpinamy zmienną
-            onChange={(e) => setPassword(e.target.value)} // Aktualizujemy zmienną
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
             required
             className="w-full p-4 bg-[#FDE8D3] rounded-xl outline-none focus:ring-4 focus:ring-[#99CDD8]/50 text-[#657166] placeholder-[#657166]/60 transition-all font-medium"
           />
 
-          {/* Wyświetlanie błędu, jeśli coś pójdzie nie tak */}
+         
           {errorMessage && (
             <div className="text-red-500 text-sm font-bold text-center">
               {errorMessage}
