@@ -1,5 +1,7 @@
 emaile sie wysyalaja aby sie poaczyc z poczata nalezy wpisac dane polaczenia z kontem google do enva. zalozenie truktury jesttakie ze:
 -floder bazy_danych 
+
+
 -email_send.py
 
 
