@@ -3,7 +3,6 @@ from database import engine
 from models import Quote, QuoteTag
 
 QUOTES = [
-    # --- KATEGORIA: POCIESZAJĄCY ---
     Quote(text="Szczęście to jedyna rzecz, która się mnoży, jeśli się ją dzieli.", author="Albert Schweitzer", tag=QuoteTag.pocieszajacy),
     Quote(text="Najpiękniejsze rzeczy na świecie nie mogą być widziane ani dotykane – trzeba je poczuć sercem.", author="Helen Keller", tag=QuoteTag.pocieszajacy),
     Quote(text="Nie płacz, że coś się skończyło, tylko uśmiechaj się, że ci się to przytrafiło.", author="Gabriel García Márquez", tag=QuoteTag.pocieszajacy),
@@ -42,8 +41,6 @@ QUOTES = [
     Quote(text="Nic nie trwa wiecznie na tym wspaniałym świecie, nawet nasze kłopoty.", author="Charlie Chaplin", tag=QuoteTag.pocieszajacy),
     Quote(text="Nie złość się, że róże mają kolce. Ciesz się, że krzewy kolczaste mają róże.", author="Alphonse Karr", tag=QuoteTag.pocieszajacy),
     Quote(text="Nawet zepsuty zegar pokazuje dokładną godzinę dwa razy na dobę.", author="Marie von Ebner-Eschenbach", tag=QuoteTag.pocieszajacy),
-        
-    # --- KATEGORIA: MOTYWACYJNY ---
     Quote(text="Kiedy wydaje ci się, że wszystko jest przeciwko tobie, pamiętaj, że samolot startuje pod wiatr, a nie z wiatrem.", author="Henry Ford", tag=QuoteTag.motywacyjny),
     Quote(text="W środku każdej trudności leży ukryta szansa.", author="Albert Einstein", tag=QuoteTag.motywacyjny),
     Quote(text="Za dwadzieścia lat bardziej będziesz żałował tego, czego nie zrobiłeś, niż tego, co zrobiłeś.", author="Mark Twain", tag=QuoteTag.motywacyjny),
@@ -82,8 +79,6 @@ QUOTES = [
     Quote(text="Nie musisz być wielki, aby zacząć, ale musisz zacząć, aby być wielkim.", author="Zig Ziglar", tag=QuoteTag.motywacyjny),
     Quote(text="Nie śmierci powinien bać się człowiek, lecz tego, że nigdy nie zacznie żyć.", author="Marek Aureliusz", tag=QuoteTag.motywacyjny),
     Quote(text="Ten, kto ma w życiu swoje 'dlaczego', zniesie prawie każde 'jak'.", author="Friedrich Nietzsche", tag=QuoteTag.motywacyjny),
-
-    # --- KATEGORIA: ODSTRESOWUJĄCY ---
     Quote(text="Najlepszym sposobem na odwdzięczenie się za uroczy moment jest cieszenie się nim.", author="Richard Bach", tag=QuoteTag.odstresowujacy),
     Quote(text="Ciesz się małymi rzeczami, bo pewnego dnia możesz spojrzeć wstecz i uświadomić sobie, że były to rzeczy wielkie.", author="Robert Brault", tag=QuoteTag.odstresowujacy),
     Quote(text="Szczęście to nie stacja, do której przyjeżdżasz, lecz sposób podróżowania.", author="Margaret Lee Runbeck", tag=QuoteTag.odstresowujacy),
@@ -122,8 +117,6 @@ QUOTES = [
     Quote(text="To, czemu stawiasz opór, nie tylko trwa, ale rośnie w siłę.", author="Carl Gustav Jung", tag=QuoteTag.odstresowujacy),
     Quote(text="Spokój umysłu to nie brak myśli. To brak oceniania myśli.", author="Naval Ravikant", tag=QuoteTag.odstresowujacy),
     Quote(text="Sztuka bycia mądrym to sztuka wiedzy o tym, co należy przeoczyć.", author="William James", tag=QuoteTag.odstresowujacy),
-    
-    # --- KATEGORIA: OGÓLNY / FILOZOFICZNY ---
     Quote(text="Dobrze widzi się tylko sercem. Najważniejsze jest niewidoczne dla oczu.", author="Antoine de Saint-Exupéry", tag=QuoteTag.ogolny),
     Quote(text="Gdzie jest miłość, tam jest życie.", author="Mahatma Gandhi", tag=QuoteTag.ogolny),
     Quote(text="Każdy nowy początek pochodzi z końca jakiegoś innego początku.", author="Seneka", tag=QuoteTag.ogolny),
