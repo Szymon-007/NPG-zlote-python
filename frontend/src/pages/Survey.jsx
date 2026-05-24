@@ -38,11 +38,9 @@ export default function Survey() {
       });
 
       if (response.ok) {
-        // Po udanym zapisie ankiety na backendzie, lecimy po cytat na Dashboard
-        navigate('/dashboard');
-      } else {
-        setErrorMessage('Błąd podczas zapisywania ankiety.');
-      }
+  const wylosowanyCytat = await response.json(); // Wyciągasz cytat, który backend właśnie przysłał
+  navigate('/dashboard', { state: { cytat: wylosowanyCytat } }); // Idziesz na dashboard i niesiesz ten cytat ze sobą
+}
     } catch (error) {
       setErrorMessage('Błąd serwera. Sprawdź połączenie.');
     }
@@ -52,7 +50,7 @@ export default function Survey() {
   const renderEmojiButton = (category, value, emoji, label) => {
     // Sprawdzamy, czy ten konkretny przycisk jest obecnie wybrany
     const isSelected = answers[category] === value;
-    
+
     return (
       <button
         type="button"
@@ -72,14 +70,14 @@ export default function Survey() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#DAEBE3] p-4">
       <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-xl w-full max-w-lg text-[#657166]">
-        
+
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2 text-[#FDE8D3] !text-[#657166]">Jak się dzisiaj czujesz?</h1>
           <p className="text-sm text-gray-500">Dopasujemy idealny cytat do Twojego obecnego nastroju.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-          
+
           {/* Kategoria 1: Poczucie Humoru */}
           <div className="flex flex-col gap-3">
             <h3 className="font-bold text-lg text-center">Poczucie humoru</h3>
