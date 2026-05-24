@@ -5,7 +5,6 @@ import { apiFetch } from '../utils/api';
 export default function Survey() {
   const navigate = useNavigate();
 
-  // 1. Jeden wspólny stan (useState) przechowujący wszystkie 3 wybory
   const [answers, setAnswers] = useState({
     humor: '',
     stress: '',
@@ -14,41 +13,35 @@ export default function Survey() {
   
   const [errorMessage, setErrorMessage] = useState('');
 
-  // 2. Funkcja aktualizująca wybrany stan po kliknięciu minki
   const handleSelect = (category, value) => {
     setAnswers((prev) => ({ ...prev, [category]: value }));
-    setErrorMessage(''); // Czyścimy błąd, gdy użytkownik coś kliknie
+    setErrorMessage('');
   };
 
-  // 3. Obsługa wysłania ankiety
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Sprawdzamy, czy użytkownik zaznaczył wszystko
     if (!answers.humor || !answers.stress || !answers.motivation) {
       setErrorMessage('Proszę, wybierz jedną opcję w każdej kategorii!');
       return;
     }
 
     try {
-      // Używamy naszego inteligentnego kuriera, który sam doda token z localStorage
       const response = await apiFetch('/api/survey', {
         method: 'POST',
         body: JSON.stringify(answers)
       });
 
       if (response.ok) {
-  const wylosowanyCytat = await response.json(); // Wyciągasz cytat, który backend właśnie przysłał
-  navigate('/dashboard', { state: { cytat: wylosowanyCytat } }); // Idziesz na dashboard i niesiesz ten cytat ze sobą
+  const wylosowanyCytat = await response.json(); 
+  navigate('/dashboard', { state: { cytat: wylosowanyCytat } });
 }
     } catch (error) {
       setErrorMessage('Błąd serwera. Sprawdź połączenie.');
     }
   };
 
-  // 4. Funkcja pomocnicza rysująca pojedynczy kafelkowy przycisk
   const renderEmojiButton = (category, value, emoji, label) => {
-    // Sprawdzamy, czy ten konkretny przycisk jest obecnie wybrany
     const isSelected = answers[category] === value;
 
     return (
@@ -57,8 +50,8 @@ export default function Survey() {
         onClick={() => handleSelect(category, value)}
         className={`flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 ${
           isSelected 
-            ? 'bg-[#99CDD8] scale-110 shadow-lg ring-2 ring-[#657166]' // Wygląd ZAZNACZONEGO
-            : 'bg-[#FDE8D3] hover:bg-[#CFD6C4] hover:scale-105 opacity-80' // Wygląd ODPOCZYWAJĄCEGO
+            ? 'bg-[#99CDD8] scale-110 shadow-lg ring-2 ring-[#657166]'
+            : 'bg-[#FDE8D3] hover:bg-[#CFD6C4] hover:scale-105 opacity-80'
         }`}
       >
         <span className="text-4xl mb-2">{emoji}</span>
@@ -78,7 +71,7 @@ export default function Survey() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
 
-          {/* Kategoria 1: Poczucie Humoru */}
+          
           <div className="flex flex-col gap-3">
             <h3 className="font-bold text-lg text-center">Poczucie humoru</h3>
             <div className="grid grid-cols-3 gap-4">
@@ -88,7 +81,7 @@ export default function Survey() {
             </div>
           </div>
 
-          {/* Kategoria 2: Poziom Stresu */}
+         
           <div className="flex flex-col gap-3">
             <h3 className="font-bold text-lg text-center">Poziom stresu</h3>
             <div className="grid grid-cols-3 gap-4">
@@ -98,7 +91,7 @@ export default function Survey() {
             </div>
           </div>
 
-          {/* Kategoria 3: Poziom Motywacji */}
+         
           <div className="flex flex-col gap-3">
             <h3 className="font-bold text-lg text-center">Poziom motywacji</h3>
             <div className="grid grid-cols-3 gap-4">
@@ -108,14 +101,14 @@ export default function Survey() {
             </div>
           </div>
 
-          {/* Wyświetlanie błędu (np. gdy ktoś nie kliknie wszystkich 3) */}
+          
           {errorMessage && (
             <div className="text-red-500 text-sm font-bold text-center mt-2">
               {errorMessage}
             </div>
           )}
 
-          {/* Przycisk wysyłania (pojawia się wizualnie jako aktywny, gdy wszystko wyklikano) */}
+         
           <button
             type="submit"
             className={`w-full p-4 mt-2 font-bold rounded-xl transition-colors text-lg shadow-sm ${
