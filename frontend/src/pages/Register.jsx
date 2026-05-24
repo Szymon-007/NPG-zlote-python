@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { apiFetch, setToken } from '../utils/api';
 
 export default function Register() {
-  // 1. Zmienne stanu dla wszystkich pól (zauważ, że zodiacSign startuje jako pusty string)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -12,41 +11,36 @@ export default function Register() {
 
   const navigate = useNavigate();
 
-  // 2. Funkcja obsługująca wysyłkę formularza
   const handleRegister = async (e) => {
     e.preventDefault();
     setErrorMessage('');
 
-    // Ręczna walidacja, żeby nie wysłać formularza bez znaku zodiaku
     if (!zodiacSign) {
       setErrorMessage('Proszę wybrać znak zodiaku.');
       return;
     }
 
     try {
-      // 3. Strzał do endpointu rejestracji
       const response = await apiFetch('/api/register', {
         method: 'POST',
         body: JSON.stringify({
           email: email,
           password: password,
           name: name,
-          zodiac_sign: zodiacSign // Używamy snake_case, żeby ułatwić życie chłopakom od Pythona
+          zodiac_sign: zodiacSign
         })
       });
 
       if (response.ok) {
-        // Czasem backend po rejestracji od razu loguje użytkownika i daje token
         const data = await response.json().catch(() => ({})); 
         
         if (data.access_token) {
           setToken(data.access_token);
-          navigate('/survey'); // Jeśli jest token -> od razu do ankiety
+          navigate('/survey');
         } else {
-          navigate('/login'); // Jeśli nie ma tokenu -> wyślij na ekran logowania
+          navigate('/login');
         }
       } else {
-        // Próba odczytania wiadomości o błędzie z backendu (np. "Konto już istnieje")
         const errorData = await response.json().catch(() => null);
         setErrorMessage(errorData?.detail || 'Błąd podczas rejestracji. Spróbuj ponownie.');
       }
@@ -60,7 +54,6 @@ export default function Register() {
       <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md text-[#657166]">
         <h1 className="text-3xl font-bold text-center mb-8 !text-[#FDE8D3]">Rejestracja</h1>
 
-        {/* Podpinamy funkcję pod formularz */}
         <form onSubmit={handleRegister} className="flex flex-col gap-4">
           
           <input
@@ -110,7 +103,6 @@ export default function Register() {
             <option value="ryby">Ryby</option>
           </select>
 
-          {/* Wyświetlanie błędów pod formularzem */}
           {errorMessage && (
             <div className="text-red-500 text-sm font-bold text-center">
               {errorMessage}
