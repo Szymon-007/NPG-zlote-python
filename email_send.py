@@ -22,7 +22,6 @@ from baza_danych.quotes_history_seeder import seed_quote_history
 sciezka_do_bazy = 'database.db'
 from datetime import date, timedelta
 
-# Odejmujemy 1 dzień od realnej daty
 
 def bazki():
     if not os.path.exists(sciezka_do_bazy):
