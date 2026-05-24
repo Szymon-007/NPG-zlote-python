@@ -13,13 +13,11 @@ function App() {
         <Route path="/" element={<Navigate to="/login" replace />} />
 	<Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* Zabezpieczona Ankieta */}
         <Route path="/survey" element={
           <ProtectedRoute>
             <Survey />
           </ProtectedRoute>
         } /> 
-      {/* Zabezpieczony Dashboard */}
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard />
