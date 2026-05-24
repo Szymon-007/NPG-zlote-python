@@ -9,7 +9,6 @@ export default function ProtectedRoute({ children }) {
   const [hasFilledSurvey, setHasFilledSurvey] = useState(false);
 
   useEffect(() => {
-    // Jeśli nie ma tokenu, nie ma nawet po co pytać backendu
     if (!token) {
       setLoading(false);
       return;
@@ -17,11 +16,9 @@ export default function ProtectedRoute({ children }) {
 
     const checkSurveyStatus = async () => {
       try {
-        // Pytamy backend, czy zalogowany user wysłał już dzisiaj ankietę
         const response = await apiFetch('/api/survey/status');
         if (response.ok) {
           const data = await response.json();
-          // Oczekujemy od chłopaków booleana: true lub false
           setHasFilledSurvey(data.has_filled_today);
         }
       } catch (error) {
@@ -32,14 +29,12 @@ export default function ProtectedRoute({ children }) {
     };
 
     checkSurveyStatus();
-  }, [token, location.pathname]); // Sprawdzaj status przy każdej zmianie podstrony
+  }, [token, location.pathname]); 
 
-  // 1. OCHRONA LOGOWANIA: Brak tokenu? Wjazd wzbroniony, kierunek logowanie
   if (!token) {
     return <Navigate to="/login" replace />;
   }
 
-  // 2. EKRAN ŁADOWANIA: Zanim backend odpowie, pokazujemy krótkie info
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#DAEBE3] text-[#657166] font-bold text-lg">
@@ -48,18 +43,13 @@ export default function ProtectedRoute({ children }) {
     );
   }
 
-  // 3. LOGIKA GUARDA (Właściwa blokada ankiety)
-  
-  // Przypadek A: Użytkownik NIE wypełnił ankiety, a próbuje wejść na /dashboard
   if (!hasFilledSurvey && location.pathname === '/dashboard') {
     return <Navigate to="/survey" replace />;
   }
 
-  // Przypadek B: Użytkownik JUŻ wypełnił ankietę, a próbuje wejść ponownie na /survey
   if (hasFilledSurvey && location.pathname === '/survey') {
     return <Navigate to="/dashboard" replace />;
   }
 
-  // Jeśli wszystko jest w porządku, pozwól wyrenderować stronę (children)
   return children;
 }
