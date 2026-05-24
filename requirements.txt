@@ -11,3 +11,9 @@ typing-inspection==0.4.2
 typing_extensions==4.15.0
 tzdata==2026.2
 tzlocal==5.3.1
+pycparser==3.0
+pytz==2026.2
+typing==3.7.4.3
+typing-inspection==0.4.2
+typing_extensions==4.15.0
+zope.interface==8.4
